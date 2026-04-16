@@ -569,7 +569,6 @@
                   <tr>
                     <th scope="col" role="columnheader" aria-sort="none">Title <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">File Type <span class="sort-arrows"></span></th>
-                    <th scope="col" role="columnheader" aria-sort="none">Visibility <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded By <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded Date <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
@@ -1061,9 +1060,12 @@
     function openEditModal(row) {
       rowToEdit = row;
       const cells = row.querySelectorAll('td');
-      const title = cells[0].textContent;
+      const titleCell = cells[0];
+      // Extract title text, removing the lock icon if present
+      const title = titleCell.textContent.trim();
       const documentType = cells[1].textContent;
-      const visibility = cells[2].textContent;
+      // Get visibility from data attribute stored on the row
+      const visibility = row.dataset.visibility;
 
       // Populate the form
       editDocumentTitle.value = title;
@@ -1106,10 +1108,18 @@
           const newVisibility = document.querySelector('input[name="edit-document-visibility"]:checked').value;
           const cells = rowToEdit.querySelectorAll('td');
 
-          // Update the title, document type, and visibility cells
-          cells[0].textContent = newTitle;
+          // Update the visibility data attribute
+          rowToEdit.dataset.visibility = newVisibility;
+
+          // Update the title cell with lock icon if Agency Only
+          if (newVisibility === 'Agency Only') {
+            cells[0].innerHTML = `<img src="assets/lock-solid-full 1.png" alt="Agency Only" width="16" height="16" style="vertical-align: middle; margin-right: 8px;">${newTitle}`;
+          } else {
+            cells[0].textContent = newTitle;
+          }
+
+          // Update the document type cell
           cells[1].textContent = newDocumentType;
-          cells[2].textContent = newVisibility;
 
           closeEditModal();
           showSuccessAlert(`File "${newTitle}" has been successfully updated.`);
@@ -1216,10 +1226,21 @@
         // Create new table row
         const tbody = documentLockerTable.querySelector('tbody');
         const newRow = document.createElement('tr');
+
+        // Store visibility as a data attribute
+        newRow.dataset.visibility = visibility;
+
+        // Build title cell with lock icon if Agency Only
+        let titleHtml = '';
+        if (visibility === 'Agency Only') {
+          titleHtml = `<img src="assets/lock-solid-full 1.png" alt="Agency Only" width="16" height="16" style="vertical-align: middle; margin-right: 8px;">${title}`;
+        } else {
+          titleHtml = title;
+        }
+
         newRow.innerHTML = `
-          <td>${title}</td>
+          <td>${titleHtml}</td>
           <td>${documentType}</td>
-          <td>${visibility}</td>
           <td>${uploadedBy}</td>
           <td>${uploadedDate}</td>
           <td>${licenseType}</td>
