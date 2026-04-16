@@ -166,7 +166,7 @@
           <button type="button" class="profile-tab">Affiliations</button>
           <button type="button" class="profile-tab">Invoices</button>
           <button type="button" class="profile-tab">Inspections</button>
-          <button type="button" class="profile-tab">Document Locker</button>
+          <button type="button" class="profile-tab">Files</button>
         </div>
 
         <div class="profile-tab-content">
@@ -503,7 +503,7 @@
           </div>
           <!-- End Inspections Tab -->
 
-          <!-- Document Locker Tab Content -->
+          <!-- Files Tab Content -->
           <div id="document-locker-tab" class="tab-panel" hidden>
             <div class="usa-accordion usa-accordion--bordered margin-top-2">
               <h3 class="usa-accordion__heading">
@@ -516,23 +516,23 @@
                 <div class="icon-key-grid">
                   <div class="icon-key-item">
                     <img src="assets/eye-icon.png" alt="" width="24" height="24">
-                    <span>- View Document</span>
+                    <span>- View File</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/download-certificate.png" alt="" width="24" height="24">
-                    <span>- Download Document</span>
+                    <span>- Download File</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/print-icon.png" alt="" width="24" height="24">
-                    <span>- Print Document</span>
+                    <span>- Print File</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/edit-icon.png" alt="" width="24" height="24">
-                    <span>- Edit Document Details</span>
+                    <span>- Edit File Details</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/icon-delete.png" alt="" width="24" height="24">
-                    <span>- Delete Document</span>
+                    <span>- Delete File</span>
                   </div>
                 </div>
               </div>
@@ -547,7 +547,7 @@
                 </div>
               </div>
 
-              <button type="button" class="usa-button" id="upload-document-btn" style="margin-top: 15px;">Upload Document</button>
+              <button type="button" class="usa-button" id="upload-document-btn" style="margin-top: 15px;">Upload File</button>
 
               <div class="table-controls margin-top-2">
                 <div class="table-controls__left">
@@ -568,12 +568,12 @@
                 <thead>
                   <tr>
                     <th scope="col" role="columnheader" aria-sort="none">Title <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader" aria-sort="none">File Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Visibility <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded By <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded Date <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Record Type <span class="sort-arrows"></span></th>
-                    <th scope="col" role="columnheader" aria-sort="none">Associated Record <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader">Controls</th>
                   </tr>
                 </thead>
@@ -583,7 +583,7 @@
               </table>
             </div>
           </div>
-          <!-- End Document Locker Tab -->
+          <!-- End Files Tab -->
 
         </div>
       </div>
@@ -601,11 +601,11 @@
     <div class="notification-text" id="success-notification-text"></div>
   </div>
 
-  <!-- Upload Document Modal -->
+  <!-- Upload File Modal -->
   <div id="upload-document-modal" class="modal-overlay" hidden>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Upload Document</h2>
+        <h2 class="modal-title">Upload File</h2>
         <button type="button" class="modal-close" id="close-upload-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -617,8 +617,8 @@
           <fieldset class="usa-fieldset margin-bottom-4">
             <legend class="usa-legend">Visibility <span class="field-required">Required</span></legend>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="visibility-internal" type="radio" name="document-visibility" value="Internal" required>
-              <label class="usa-radio__label" for="visibility-internal">Internal</label>
+              <input class="usa-radio__input" id="visibility-agency-only" type="radio" name="document-visibility" value="Agency Only" required>
+              <label class="usa-radio__label" for="visibility-agency-only">Agency Only</label>
             </div>
             <div class="usa-radio">
               <input class="usa-radio__input" id="visibility-public" type="radio" name="document-visibility" value="Public" required>
@@ -627,8 +627,20 @@
           </fieldset>
 
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-title">Document Title <span class="field-required">Required</span></label>
+            <label class="usa-label" for="document-title">File Title <span class="field-required">Required</span></label>
             <input class="usa-input" id="document-title" name="document-title" type="text" required>
+          </div>
+
+          <div class="usa-form-group margin-bottom-4">
+            <label class="usa-label" for="document-type">File Type <span class="field-required">Required</span></label>
+            <select class="usa-select" id="document-type" name="document-type" required>
+              <option value="">Please Select</option>
+              <option value="Compliance">Compliance</option>
+              <option value="Court">Court</option>
+              <option value="Educational">Educational</option>
+              <option value="Training">Training</option>
+              <option value="Photo">Photo</option>
+            </select>
           </div>
 
           <div class="usa-form-group margin-bottom-4">
@@ -640,27 +652,35 @@
             </select>
           </div>
 
-          <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-record-type">Record Type</label>
-            <select class="usa-select" id="document-record-type" name="document-record-type">
-              <option value="">Please Select</option>
-              <option value="License">License</option>
-              <option value="Application">Application</option>
-              <option value="Case">Case</option>
-            </select>
+          <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="usa-form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="usa-label" for="document-record-type">Record Type</label>
+              <select class="usa-select" id="document-record-type" name="document-record-type">
+                <option value="">Please Select</option>
+                <option value="License">License</option>
+                <option value="Application">Application</option>
+                <option value="Case">Case</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group" id="associated-record-group" style="flex: 1; margin-bottom: 0; display: none;">
+              <label class="usa-label" for="document-associated-record">Associated Record <span class="field-required">Required</span></label>
+              <select class="usa-select" id="document-associated-record" name="document-associated-record">
+                <option value="">Please Select</option>
+              </select>
+            </div>
           </div>
 
-          <div class="usa-form-group margin-bottom-4" id="associated-record-group" style="display: none;">
-            <label class="usa-label" for="document-associated-record">Associated Record <span class="field-required">Required</span></label>
-            <select class="usa-select" id="document-associated-record" name="document-associated-record">
-              <option value="">Please Select</option>
-            </select>
-          </div>
-
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-file">Upload Document <span class="field-required">Required</span></label>
+            <label class="usa-label" for="document-file">Upload File <span class="field-required">Required</span></label>
             <p style="font-size: 1.4rem; color: #71767a; margin-bottom: 1rem;">File size and type limitations per attachment: 50 MB for txt, csv, png, jpg, jpeg, pdf, doc, xls, docx, xlsx</p>
             <input class="usa-file-input" id="document-file" name="document-file" type="file" required>
+          </div>
+
+          <div class="usa-form-group margin-bottom-4">
+            <label class="usa-label" for="document-notes">File Notes</label>
+            <textarea class="usa-textarea" id="document-notes" name="document-notes" maxlength="500" rows="4"></textarea>
+            <p style="font-size: 1.4rem; color: #71767a; margin-top: 0.5rem;">Maximum 500 characters</p>
           </div>
 
           <div class="modal-footer" style="padding-left: 0;">
@@ -672,11 +692,11 @@
     </div>
   </div>
 
-  <!-- Edit Document Modal -->
+  <!-- Edit File Modal -->
   <div id="edit-document-modal" class="modal-overlay" hidden>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Edit Document</h2>
+        <h2 class="modal-title">Edit File</h2>
         <button type="button" class="modal-close" id="close-edit-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -686,15 +706,27 @@
       <div class="modal-body">
         <form id="edit-document-form">
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="edit-document-title">Document Title <span class="field-required">Required</span></label>
+            <label class="usa-label" for="edit-document-title">File Title <span class="field-required">Required</span></label>
             <input class="usa-input" id="edit-document-title" name="edit-document-title" type="text" required>
+          </div>
+
+          <div class="usa-form-group margin-bottom-4">
+            <label class="usa-label" for="edit-document-type">File Type <span class="field-required">Required</span></label>
+            <select class="usa-select" id="edit-document-type" name="edit-document-type" required>
+              <option value="">Please Select</option>
+              <option value="Compliance">Compliance</option>
+              <option value="Court">Court</option>
+              <option value="Educational">Educational</option>
+              <option value="Training">Training</option>
+              <option value="Photo">Photo</option>
+            </select>
           </div>
 
           <fieldset class="usa-fieldset margin-bottom-4">
             <legend class="usa-legend">Visibility <span class="field-required">Required</span></legend>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="edit-visibility-internal" type="radio" name="edit-document-visibility" value="Internal" required>
-              <label class="usa-radio__label" for="edit-visibility-internal">Internal</label>
+              <input class="usa-radio__input" id="edit-visibility-agency-only" type="radio" name="edit-document-visibility" value="Agency Only" required>
+              <label class="usa-radio__label" for="edit-visibility-agency-only">Agency Only</label>
             </div>
             <div class="usa-radio">
               <input class="usa-radio__input" id="edit-visibility-public" type="radio" name="edit-document-visibility" value="Public" required>
@@ -715,7 +747,7 @@
   <div id="delete-document-modal" class="modal-overlay" hidden>
     <div class="modal-content" style="max-width: 480px;">
       <div class="modal-header">
-        <h2 class="modal-title">Delete Document</h2>
+        <h2 class="modal-title">Delete File</h2>
         <button type="button" class="modal-close" id="close-delete-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -759,7 +791,7 @@
       'Affiliations': null,
       'Invoices': null,
       'Inspections': document.getElementById('inspections-tab'),
-      'Document Locker': document.getElementById('document-locker-tab')
+      'Files': document.getElementById('document-locker-tab')
     };
 
     tabs.forEach(tab => {
@@ -922,7 +954,7 @@
       });
     });
 
-    // Upload Document Modal functionality
+    // Upload File Modal functionality
     const uploadDocumentBtn = document.getElementById('upload-document-btn');
     const uploadDocumentModal = document.getElementById('upload-document-modal');
     const closeModalBtn = document.getElementById('close-upload-modal');
@@ -941,16 +973,17 @@
       'Case': ['CPT-101', 'ENF-587', 'INV-123']
     };
 
-    // Edit Document Modal functionality
+    // Edit File Modal functionality
     const editDocumentModal = document.getElementById('edit-document-modal');
     const closeEditModalBtn = document.getElementById('close-edit-modal');
     const cancelEditBtn = document.getElementById('cancel-edit');
     const editDocumentForm = document.getElementById('edit-document-form');
     const editDocumentTitle = document.getElementById('edit-document-title');
-    const editVisibilityInternal = document.getElementById('edit-visibility-internal');
+    const editDocumentType = document.getElementById('edit-document-type');
+    const editVisibilityAgencyOnly = document.getElementById('edit-visibility-agency-only');
     const editVisibilityPublic = document.getElementById('edit-visibility-public');
 
-    // Delete Document Modal functionality
+    // Delete File Modal functionality
     const deleteDocumentModal = document.getElementById('delete-document-modal');
     const closeDeleteModalBtn = document.getElementById('close-delete-modal');
     const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
@@ -1029,14 +1062,16 @@
       rowToEdit = row;
       const cells = row.querySelectorAll('td');
       const title = cells[0].textContent;
-      const visibility = cells[1].textContent;
+      const documentType = cells[1].textContent;
+      const visibility = cells[2].textContent;
 
       // Populate the form
       editDocumentTitle.value = title;
+      editDocumentType.value = documentType;
 
       // Set the correct radio button
-      if (visibility === 'Internal') {
-        editVisibilityInternal.checked = true;
+      if (visibility === 'Agency Only') {
+        editVisibilityAgencyOnly.checked = true;
       } else if (visibility === 'Public') {
         editVisibilityPublic.checked = true;
       }
@@ -1067,15 +1102,17 @@
 
         if (rowToEdit) {
           const newTitle = editDocumentTitle.value;
+          const newDocumentType = editDocumentType.value;
           const newVisibility = document.querySelector('input[name="edit-document-visibility"]:checked').value;
           const cells = rowToEdit.querySelectorAll('td');
 
-          // Update the title and visibility cells
+          // Update the title, document type, and visibility cells
           cells[0].textContent = newTitle;
-          cells[1].textContent = newVisibility;
+          cells[1].textContent = newDocumentType;
+          cells[2].textContent = newVisibility;
 
           closeEditModal();
-          showSuccessAlert(`Document "${newTitle}" has been successfully updated.`);
+          showSuccessAlert(`File "${newTitle}" has been successfully updated.`);
         }
       });
     }
@@ -1119,7 +1156,7 @@
           rowToDelete.remove();
           updateDocumentCount();
           closeDeleteModal();
-          showSuccessAlert(`Document "${documentTitleToDelete}" has been successfully deleted.`);
+          showSuccessAlert(`File "${documentTitleToDelete}" has been successfully deleted.`);
         }
       });
     }
@@ -1154,6 +1191,7 @@
         // Get form values
         const visibility = document.querySelector('input[name="document-visibility"]:checked').value;
         const title = document.getElementById('document-title').value;
+        const documentType = document.getElementById('document-type').value;
         const licenseType = document.getElementById('document-license-type').value || '-';
         const recordType = document.getElementById('document-record-type').value || '-';
         const associatedRecord = document.getElementById('document-associated-record').value || '-';
@@ -1169,31 +1207,37 @@
         // Simulated logged-in user
         const uploadedBy = 'John Smith';
 
+        // Combine Record Type and Associated Record for display
+        let recordTypeDisplay = recordType;
+        if (recordType !== '-' && associatedRecord !== '-') {
+          recordTypeDisplay = `${recordType}: ${associatedRecord}`;
+        }
+
         // Create new table row
         const tbody = documentLockerTable.querySelector('tbody');
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
           <td>${title}</td>
+          <td>${documentType}</td>
           <td>${visibility}</td>
           <td>${uploadedBy}</td>
           <td>${uploadedDate}</td>
           <td>${licenseType}</td>
-          <td>${recordType}</td>
-          <td>${associatedRecord}</td>
+          <td>${recordTypeDisplay}</td>
           <td>
-            <a href="#" class="icon-button" aria-label="View Document">
+            <a href="#" class="icon-button" aria-label="View File">
               <img src="assets/eye-icon.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button" aria-label="Download Document">
+            <a href="#" class="icon-button" aria-label="Download File">
               <img src="assets/download-certificate.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button" aria-label="Print Document">
+            <a href="#" class="icon-button" aria-label="Print File">
               <img src="assets/print-icon.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button edit-document-btn" aria-label="Edit Document Details">
+            <a href="#" class="icon-button edit-document-btn" aria-label="Edit File Details">
               <img src="assets/edit-icon.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button delete-document-btn" aria-label="Delete Document">
+            <a href="#" class="icon-button delete-document-btn" aria-label="Delete File">
               <img src="assets/icon-delete.png" alt="" width="30" height="30">
             </a>
           </td>
