@@ -519,16 +519,8 @@
                     <span>- Visibility: Agency Only</span>
                   </div>
                   <div class="icon-key-item">
-                    <img src="assets/eye-icon.png" alt="" width="24" height="24">
-                    <span>- View File</span>
-                  </div>
-                  <div class="icon-key-item">
                     <img src="assets/download-certificate.png" alt="" width="24" height="24">
                     <span>- Download File</span>
-                  </div>
-                  <div class="icon-key-item">
-                    <img src="assets/print-icon.png" alt="" width="24" height="24">
-                    <span>- Print File</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/edit-icon.png" alt="" width="24" height="24">
@@ -575,7 +567,6 @@
                     <th scope="col" role="columnheader" aria-sort="none">File Type / Sub Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded By <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded Date <span class="sort-arrows"></span></th>
-                    <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Record Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader">Controls</th>
                   </tr>
@@ -624,8 +615,8 @@
               <label class="usa-radio__label" for="visibility-agency-only">Agency Only</label>
             </div>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="visibility-public" type="radio" name="document-visibility" value="Public" required>
-              <label class="usa-radio__label" for="visibility-public">Public</label>
+              <input class="usa-radio__input" id="visibility-public" type="radio" name="document-visibility" value="Agency + Constituent" required checked>
+              <label class="usa-radio__label" for="visibility-public">Agency + Constituent</label>
             </div>
           </fieldset>
 
@@ -653,15 +644,6 @@
                 <option value="">Please Select</option>
               </select>
             </div>
-          </div>
-
-          <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-license-type">License Type</label>
-            <select class="usa-select" id="document-license-type" name="document-license-type">
-              <option value="">Please Select</option>
-              <option value="License Type 1">License Type 1</option>
-              <option value="License Type 2">License Type 2</option>
-            </select>
           </div>
 
           <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
@@ -750,8 +732,8 @@
               <label class="usa-radio__label" for="edit-visibility-agency-only">Agency Only</label>
             </div>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="edit-visibility-public" type="radio" name="edit-document-visibility" value="Public" required>
-              <label class="usa-radio__label" for="edit-visibility-public">Public</label>
+              <input class="usa-radio__input" id="edit-visibility-public" type="radio" name="edit-document-visibility" value="Agency + Constituent" required>
+              <label class="usa-radio__label" for="edit-visibility-public">Agency + Constituent</label>
             </div>
           </fieldset>
 
@@ -1179,7 +1161,7 @@
 
       if (visibility === 'Agency Only') {
         editVisibilityAgencyOnly.checked = true;
-      } else if (visibility === 'Public') {
+      } else if (visibility === 'Agency + Constituent') {
         editVisibilityPublic.checked = true;
       }
 
@@ -1318,7 +1300,6 @@
         const fileType = document.getElementById('document-type').value;
         const fileSubType = document.getElementById('document-sub-type').value || '';
         const uploadNotes = document.getElementById('document-notes').value || '';
-        const licenseType = document.getElementById('document-license-type').value || '-';
         const recordType = document.getElementById('document-record-type').value || '-';
         const associatedRecord = document.getElementById('document-associated-record').value || '-';
         const fileInput = document.getElementById('document-file');
@@ -1368,17 +1349,10 @@
           <td>${fileTypeDisplay}</td>
           <td>${uploadedBy}</td>
           <td>${uploadedDate}</td>
-          <td>${licenseType}</td>
           <td>${recordTypeDisplay}</td>
           <td>
-            <a href="#" class="icon-button" aria-label="View File">
-              <img src="assets/eye-icon.png" alt="" width="30" height="30">
-            </a>
             <a href="#" class="icon-button" aria-label="Download File">
               <img src="assets/download-certificate.png" alt="" width="30" height="30">
-            </a>
-            <a href="#" class="icon-button" aria-label="Print File">
-              <img src="assets/print-icon.png" alt="" width="30" height="30">
             </a>
             <a href="#" class="icon-button edit-document-btn" aria-label="Edit File Details">
               <img src="assets/edit-icon.png" alt="" width="30" height="30">
