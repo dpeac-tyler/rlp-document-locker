@@ -162,11 +162,10 @@
           <button type="button" class="profile-tab active">Certificates</button>
           <button type="button" class="profile-tab">Submissions</button>
           <button type="button" class="profile-tab">Assets</button>
-          <button type="button" class="profile-tab">Documents</button>
           <button type="button" class="profile-tab">Affiliations</button>
           <button type="button" class="profile-tab">Invoices</button>
           <button type="button" class="profile-tab">Inspections</button>
-          <button type="button" class="profile-tab">Files</button>
+          <button type="button" class="profile-tab">Documents</button>
         </div>
 
         <div class="profile-tab-content">
@@ -520,15 +519,15 @@
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/download-certificate.png" alt="" width="24" height="24">
-                    <span>- Download File</span>
+                    <span>- Download Document</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/edit-icon.png" alt="" width="24" height="24">
-                    <span>- Edit File Details</span>
+                    <span>- Edit Document Details</span>
                   </div>
                   <div class="icon-key-item">
                     <img src="assets/icon-delete.png" alt="" width="24" height="24">
-                    <span>- Delete File</span>
+                    <span>- Delete Document</span>
                   </div>
                 </div>
               </div>
@@ -543,7 +542,7 @@
                 </div>
               </div>
 
-              <button type="button" class="usa-button" id="upload-document-btn" style="margin-top: 15px;">Upload File</button>
+              <button type="button" class="usa-button" id="upload-document-btn" style="margin-top: 15px;">Upload Document</button>
 
               <div class="table-controls margin-top-2">
                 <div class="table-controls__left">
@@ -564,7 +563,7 @@
                 <thead>
                   <tr>
                     <th scope="col" role="columnheader" aria-sort="none">Title <span class="sort-arrows"></span></th>
-                    <th scope="col" role="columnheader" aria-sort="none">File Type / Sub Type <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader" aria-sort="none">Document Type / Sub Type <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded By <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Uploaded Date <span class="sort-arrows"></span></th>
                     <th scope="col" role="columnheader" aria-sort="none">Record Type <span class="sort-arrows"></span></th>
@@ -599,7 +598,7 @@
   <div id="upload-document-modal" class="modal-overlay" hidden>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Upload File</h2>
+        <h2 class="modal-title">Upload Document</h2>
         <button type="button" class="modal-close" id="close-upload-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -611,23 +610,23 @@
           <fieldset class="usa-fieldset margin-bottom-4">
             <legend class="usa-legend">Visibility <span class="field-required">Required</span></legend>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="visibility-agency-only" type="radio" name="document-visibility" value="Agency Only" required>
+              <input class="usa-radio__input" id="visibility-agency-only" type="radio" name="document-visibility" value="Agency Only" required checked>
               <label class="usa-radio__label" for="visibility-agency-only">Agency Only</label>
             </div>
             <div class="usa-radio">
-              <input class="usa-radio__input" id="visibility-public" type="radio" name="document-visibility" value="Agency + Constituent" required checked>
+              <input class="usa-radio__input" id="visibility-public" type="radio" name="document-visibility" value="Agency + Constituent" required>
               <label class="usa-radio__label" for="visibility-public">Agency + Constituent</label>
             </div>
           </fieldset>
 
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-title">File Title <span class="field-required">Required</span></label>
+            <label class="usa-label" for="document-title">Document Title <span class="field-required">Required</span></label>
             <input class="usa-input" id="document-title" name="document-title" type="text" required>
           </div>
 
           <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
             <div class="usa-form-group" style="flex: 1; margin-bottom: 0;">
-              <label class="usa-label" for="document-type">File Type <span class="field-required">Required</span></label>
+              <label class="usa-label" for="document-type">Document Type <span class="field-required">Required</span></label>
               <select class="usa-select" id="document-type" name="document-type" required>
                 <option value="">Please Select</option>
                 <option value="Compliance">Compliance</option>
@@ -639,7 +638,7 @@
             </div>
 
             <div class="usa-form-group" id="file-sub-type-group" style="flex: 1; margin-bottom: 0; display: none;">
-              <label class="usa-label" for="document-sub-type">File Sub Type <span class="field-required">Required</span></label>
+              <label class="usa-label" for="document-sub-type">Document Sub Type <span class="field-required">Required</span></label>
               <select class="usa-select" id="document-sub-type" name="document-sub-type">
                 <option value="">Please Select</option>
               </select>
@@ -666,13 +665,13 @@
           </div>
 
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-file">Upload File <span class="field-required">Required</span></label>
+            <label class="usa-label" for="document-file">Upload Document <span class="field-required">Required</span></label>
             <p style="font-size: 1.4rem; color: #71767a; margin-bottom: 1rem;">File size and type limitations per attachment: 50 MB for txt, csv, png, jpg, jpeg, pdf, doc, xls, docx, xlsx</p>
             <input class="usa-file-input" id="document-file" name="document-file" type="file" required>
           </div>
 
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="document-notes">File Notes</label>
+            <label class="usa-label" for="document-notes">Document Notes</label>
             <textarea class="usa-textarea" id="document-notes" name="document-notes" maxlength="500" rows="4"></textarea>
             <p style="font-size: 1.4rem; color: #71767a; margin-top: 0.5rem;">Maximum 500 characters</p>
           </div>
@@ -690,7 +689,7 @@
   <div id="edit-document-modal" class="modal-overlay" hidden>
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Edit File</h2>
+        <h2 class="modal-title">Edit Document</h2>
         <button type="button" class="modal-close" id="close-edit-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -700,13 +699,13 @@
       <div class="modal-body">
         <form id="edit-document-form">
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="edit-document-title">File Title <span class="field-required">Required</span></label>
+            <label class="usa-label" for="edit-document-title">Document Title <span class="field-required">Required</span></label>
             <input class="usa-input" id="edit-document-title" name="edit-document-title" type="text" required>
           </div>
 
           <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
             <div class="usa-form-group" style="flex: 1; margin-bottom: 0;">
-              <label class="usa-label" for="edit-document-type">File Type <span class="field-required">Required</span></label>
+              <label class="usa-label" for="edit-document-type">Document Type <span class="field-required">Required</span></label>
               <select class="usa-select" id="edit-document-type" name="edit-document-type" required>
                 <option value="">Please Select</option>
                 <option value="Compliance">Compliance</option>
@@ -718,7 +717,7 @@
             </div>
 
             <div class="usa-form-group" id="edit-file-sub-type-group" style="flex: 1; margin-bottom: 0; display: none;">
-              <label class="usa-label" for="edit-document-sub-type">File Sub Type <span class="field-required">Required</span></label>
+              <label class="usa-label" for="edit-document-sub-type">Document Sub Type <span class="field-required">Required</span></label>
               <select class="usa-select" id="edit-document-sub-type" name="edit-document-sub-type">
                 <option value="">Please Select</option>
               </select>
@@ -738,7 +737,7 @@
           </fieldset>
 
           <div class="usa-form-group margin-bottom-4">
-            <label class="usa-label" for="edit-document-notes">File Notes</label>
+            <label class="usa-label" for="edit-document-notes">Document Notes</label>
             <textarea class="usa-textarea" id="edit-document-notes" name="edit-document-notes" maxlength="500" rows="4"></textarea>
             <p style="font-size: 1.4rem; color: #71767a; margin-top: 0.5rem;">Maximum 500 characters</p>
           </div>
@@ -756,7 +755,7 @@
   <div id="delete-document-modal" class="modal-overlay" hidden>
     <div class="modal-content" style="max-width: 480px;">
       <div class="modal-header">
-        <h2 class="modal-title">Delete File</h2>
+        <h2 class="modal-title">Delete Document</h2>
         <button type="button" class="modal-close" id="close-delete-modal" aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -796,11 +795,10 @@
       'Certificates': document.getElementById('certificates-tab'),
       'Submissions': null,
       'Assets': null,
-      'Documents': null,
       'Affiliations': null,
       'Invoices': null,
       'Inspections': document.getElementById('inspections-tab'),
-      'Files': document.getElementById('document-locker-tab')
+      'Documents': document.getElementById('document-locker-tab')
     };
 
     tabs.forEach(tab => {
@@ -1218,7 +1216,7 @@
           cells[1].textContent = fileTypeDisplay;
 
           closeEditModal();
-          showSuccessAlert(`File "${newTitle}" has been successfully updated.`);
+          showSuccessAlert(`Document "${newTitle}" has been successfully updated.`);
         }
       });
     }
@@ -1262,7 +1260,7 @@
           rowToDelete.remove();
           updateDocumentCount();
           closeDeleteModal();
-          showSuccessAlert(`File "${documentTitleToDelete}" has been successfully deleted.`);
+          showSuccessAlert(`Document "${documentTitleToDelete}" has been successfully deleted.`);
         }
       });
     }
@@ -1351,13 +1349,13 @@
           <td>${uploadedDate}</td>
           <td>${recordTypeDisplay}</td>
           <td>
-            <a href="#" class="icon-button" aria-label="Download File">
+            <a href="#" class="icon-button" aria-label="Download Document">
               <img src="assets/download-certificate.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button edit-document-btn" aria-label="Edit File Details">
+            <a href="#" class="icon-button edit-document-btn" aria-label="Edit Document Details">
               <img src="assets/edit-icon.png" alt="" width="30" height="30">
             </a>
-            <a href="#" class="icon-button delete-document-btn" aria-label="Delete File">
+            <a href="#" class="icon-button delete-document-btn" aria-label="Delete Document">
               <img src="assets/icon-delete.png" alt="" width="30" height="30">
             </a>
           </td>
